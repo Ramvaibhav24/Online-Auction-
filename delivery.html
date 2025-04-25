@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Auction - Add to Cart and Delivery</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .auction-items {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap; 
+        }
+
+        .item {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 280px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .item img {
+            width: 100%;
+            height: 70%;
+            border-radius: 8px;
+        }
+
+        .item h3 {
+            color: #2c3e50;
+            margin: 15px 0;
+        }
+
+        .item p {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+
+        .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-to-cart {
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            background-color: #2980b9;
+        }
+
+        .cart {
+            margin: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #cart-items li {
+            margin-bottom: 10px;
+        }
+
+        #checkout-btn {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #checkout-btn:hover {
+            background-color: #27ae60;
+        }
+
+        .delivery-form {
+            margin: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        .delivery-form input,
+        .delivery-form select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .delivery-form button {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .delivery-form button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="auction-items">
+    <h2>Auction Items</h2>
+
+    <div class="item" data-id="1">
+        <img src="painting.jpg" alt="Vintage Painting">
+        <h3>Vintage Painting</h3>
+        <p>$300</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="item" data-id="2">
+        <img src="antique vase.jpg" alt="Antique Vase">
+        <h3>Antique Vase</h3>
+        <p>$150</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="item" data-id="3">
+        <img src="artwork.jpg" alt="artwork">
+        <h3>Artwork</h3>
+        <p>$500</p>
+        <button class="add-to-cart">Add to Cart</button>
+    </div>
+</div>
+
+
+<div class="cart">
+    <h2>Your Cart</h2>
+    <ul id="cart-items">
+
+    </ul>
+    <button id="checkout-btn" style="display: none;">Proceed to Delivery</button>
+</div>
+
+<div class="delivery-form">
+    <h2>Delivery Information</h2>
+    <form id="delivery-form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="address">Shipping Address:</label>
+        <input type="text" id="address" required>
+
+        <label for="payment">Payment Method:</label>
+        <select id="payment" required>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+        </select>
+
+        <button type="submit">Complete Purchase</button>
+    </form>
+</div>
+
+<script src="index.js"></script>
+
+</body>
+</html>

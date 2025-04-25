@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - auction zone</title>
+    <link rel="stylesheet" href="signupandlogin.css">
+    <link rel="stylesheet" href="utils.css">
+</head>
+<body>
+    
+    <header>
+        <nav class="flex justify-between font-bold">
+            <div class="logo flex items-center  ">Auction Zone</div>
+            <ul class="navbar flex items-center">
+                <li><a href="welcomepage.html">Home</a></li>
+                <li><a href="aboutus.html">about</a></li>
+                <li><a href="contavtus.html">Contact Us</a></li>
+                
+            </ul>
+        </nav>
+        
+    </header>
+
+    
+    <div class="form-container">
+        <div class="form-content">
+            <h2>Login</h2>
+            <form action="submit_login.php" method="POST" id="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="signup.html">Sign up here</a></p>
+        </div>
+    </div>
+
+    
+    <footer>
+        <div class="end text-center">Copyright &copy; AuctionZone.com | All Rights Reserved</div>
+    </footer>
+
+    <script>
+                document.getElementById('login-form').addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value.trim();
+
+                    const formData = new FormData(this);
+                    formData.append('action', 'login'); // Add action=login to the form data
+
+                    fetch('https://script.google.com/macros/s/AKfycbzAfQRDBIcLE2-N-GLBGTJU4_lxNWL6ahOfC8jHXQqhmsTqS9NcusZ2UJgEDLaH-2f-/exec', {
+                    method: 'POST',
+                    body: formData,
+                    mode: "cors"
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                    alert(data); // Show login result
+                    if (data === "Login Successful") {
+                        window.location.href = 'page.html'; // Redirect to the dashboard or home page
+                    }
+                    })
+                    .catch(error => {
+                    alert("Error submitting form.");
+                    console.error('Error:', error);
+                    });
+                });
+
+    </script>
+    
+</body>
+</html>

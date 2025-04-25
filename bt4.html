@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidding Place</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            color:#fff
+        }
+        header {
+            background-color:#007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        header:hover{
+            background-color: #0056b3;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color:black
+        }
+
+        .item-details {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color:black;
+        }
+        .item-details img {
+            max-width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            color:black;
+        }
+        .bid-form {
+            margin-top: 20px;
+        }
+        .bid-form input {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .bid-form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .bid-form button:hover {
+            background-color: #0056b3;
+        }
+        .bid-info {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        main:hover{
+            transform: scale(1.0);
+            box-shadow: 0 4px 20px ;
+        }
+        #currentBid{
+            color:black;
+        }
+        #a{
+            color:black;
+        }
+        label{
+            color:black;
+        }
+    </style>
+</head>
+<body>
+<header>    
+    <h1>Auction zone</h1>
+    <nav>
+        <ul>
+            <li><a href="welcomepage.html">Home</a></li>
+            <li><a href="page.html">Auctions</a></li>
+            <li><a href="delivery.html">My Bids</a></li>
+            <li><a href="contavtus.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+    <main>
+        <div class="item-details">
+            <img src="artwork.jpg" alt="artwork">
+            <h2>Antique Bowl</h2>
+            <p><strong>Starting Bid:</strong> $1500</p>
+            <p>Imported Australian and international fine art.</p>
+        </div>
+
+        <div class="bid-form">
+            <label for="bidInput">Enter your bid:</label>
+            <input type="number" id="bidInput" placeholder="Enter amount">
+            <button onclick="placeBid()">Place Bid</button>
+        </div>
+
+      
+        <div class="bid-info" id="currentBidInfo">
+            <p id="a"><strong>Current Highest Bid:</strong> $<span id="currentBid">1500</span></p>
+        </div>
+    </main>
+
+    <script>
+        let currentBid = 1500;
+        let item = "Antique Bowl";
+
+        function placeBid() {
+            const bidInput = document.getElementById("bidInput").value;
+            const currentBidElement = document.getElementById("currentBid");
+
+            if (bidInput && bidInput > currentBid) {
+                currentBid = bidInput;
+                currentBidElement.textContent = currentBid;
+                alert(`Your bid of $${bidInput} has been placed successfully!`);
+                window.location.href = 'delivery.html';
+
+            } else if (bidInput <= currentBid) {
+                alert("Your bid must be higher than the current highest bid.");
+            } else {
+                alert("Please enter a valid bid amount.");
+            }
+
+            localStorage.setItem(item, currentBid);
+        }
+
+        window.onload = function() {
+            const savedBid = localStorage.getItem(item);
+            if (savedBid) {
+                currentBid = parseInt(savedBid);
+                document.getElementById("currentBid").textContent = currentBid;
+            }
+        };
+    </script>
+</body>
+</html>
